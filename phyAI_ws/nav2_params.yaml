@@ -1,0 +1,135 @@
+bt_navigator:
+  ros__parameters:
+    use_sim_time: true
+    default_bt_xml_filename: "navigate_w_replanning_and_recovery.xml"
+
+planner_server:
+  ros__parameters:
+    use_sim_time: true
+    expected_planner_frequency: 5.0
+    planner_plugins: ["GridBased"]
+    GridBased:
+      plugin: "nav2_navfn_planner/NavfnPlanner"
+      tolerance: 0.5
+
+controller_server:
+  ros__parameters:
+    use_sim_time: true
+    controller_frequency: 30.0 #20.0
+    min_x_velocity_threshold: 0.001
+    min_theta_velocity_threshold: 0.001
+    controller_plugins: ["FollowPath"]
+    FollowPath:
+      plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
+      desired_linear_vel: 2.0
+      #lookahead_dist: 0.6
+      min_lookahead_dist: 0.3
+      max_lookahead_dist: 0.9
+      use_velocity_scaled_lookahead_dist: true
+      transform_tolerance: 0.1
+
+      #=========TEST=======================================
+      # --- 선회(회전) 속도 상한 ---
+      max_angular_accel: 2.0           # 기본보다 여유 (필요시)
+      max_linear_accel: 2.0
+      max_lookahead_dist: 1.2          # 경로 예측 길이 ↑ (고속 안정)
+      min_lookahead_dist: 0.4
+      lookahead_dist: 0.8
+      use_velocity_scaled_lookahead_dist: false
+
+      regulate_max_linear_vel: false
+      use_collision_detection: false
+      inflation_cost_scaling_factor: 3.0  # 너무 크게 하면 자주 감속
+      cost_scaling_dist: 0.8              # 경로 가까운 장애물에 덜 예민하도록 살짝 ↑
+      transform_tolerance: 0.15           # TF 지연으로 인한 감속 방지
+      #==================================================
+
+smoother_server:
+  ros__parameters:
+    use_sim_time: true
+    smoother_plugins: ["SimpleSmoother"]
+    SimpleSmoother:
+      plugin: "nav2_smoother::SimpleSmoother"
+
+behavior_server:
+  ros__parameters:
+    use_sim_time: true
+    behavior_plugins: ["spin", "backup", "drive_on_heading", "assisted_teleop", "wait"]
+    spin:             { plugin: "nav2_behaviors/Spin" }
+    backup:           { plugin: "nav2_behaviors/BackUp" }
+    drive_on_heading: { plugin: "nav2_behaviors/DriveOnHeading" }
+    assisted_teleop:  { plugin: "nav2_behaviors/AssistedTeleop" }
+    wait:             { plugin: "nav2_behaviors/Wait" }
+
+global_costmap:
+  global_costmap:
+    ros__parameters:
+      use_sim_time: true
+      global_frame: map
+      robot_base_frame: body
+      update_frequency: 5.0
+      publish_frequency: 2.0
+      # 크기/해상도 타입 주의
+      resolution: 0.05        # 실수
+      track_unknown_space: true
+      robot_radius: 0.20      # footprint와 동시 사용 금지
+      plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
+      static_layer:
+        plugin: "nav2_costmap_2d::StaticLayer"
+        map_subscribe_transient_local: true
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        observation_sources: scan
+        scan:
+          topic: /scan
+          data_type: "LaserScan"
+          marking: true
+          clearing: true
+          max_obstacle_height: 2.0
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        inflation_radius: 0.6
+
+local_costmap:
+  local_costmap:
+    ros__parameters:
+      use_sim_time: true
+      global_frame: odom
+      robot_base_frame: body
+      update_frequency: 10.0
+      publish_frequency: 5.0
+      rolling_window: true
+      width: 6           # 정수
+      height: 6          # 정수
+      resolution: 0.05   # 실수
+      robot_radius: 0.20
+      plugins: ["obstacle_layer", "inflation_layer"]
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        observation_sources: scan
+        scan:
+          topic: /scan
+          data_type: "LaserScan"
+          marking: true
+          clearing: true
+          max_obstacle_height: 2.0
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        inflation_radius: 0.6
+
+velocity_smoother:
+  ros__parameters:
+    use_sim_time: true
+    smoothing_frequency: 20.0
+    scale_velocities: true
+
+    # === 꼭 넣기: 최대 속도/가감속 한계 ===
+    # [vx, vy, wz] 순 (diff-drive면 vy=0)
+    max_velocity: [2.0, 0.0, 2.0]
+    min_velocity: [0.0, 0.0, 0.0]
+    accel_limit:  [2.0, 0.0, 2.0]
+    decel_limit:  [2.0, 0.0, 2.0]
+
+    # 필요 시 피드백 사용 시 주제 지정
+    # odom_topic: /odom
+    # feedback: "OPEN_LOOP"  # 또는 "CLOSED_LOOP"

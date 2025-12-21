@@ -1,0 +1,3 @@
+[console_scripts]
+system2_node = ats_system2.system2_node:main
+

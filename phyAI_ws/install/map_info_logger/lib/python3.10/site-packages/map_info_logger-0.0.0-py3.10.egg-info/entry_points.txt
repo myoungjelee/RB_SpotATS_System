@@ -1,0 +1,3 @@
+[console_scripts]
+map_info_logger = map_info_logger.map_info_logger:main
+

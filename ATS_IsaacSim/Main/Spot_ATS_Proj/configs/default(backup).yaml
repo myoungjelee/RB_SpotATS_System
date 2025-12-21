@@ -1,0 +1,71 @@
+sim:
+  headless: false
+  load_extensions:
+    - omni.isaac.ros2_bridge
+    - omni.anim.people
+    - omni.anim.graph.bundle
+    - omni.anim.graph.schema
+    - omni.anim.navigation.schema
+    - omni.kit.scripting
+    - omni.anim.graph.ui
+    - omni.isaac.sensor
+    - isaacsim.sensors.rtx      # RTX LiDAR API / OGN
+    - omni.replicator.core      # RenderProduct 내부에서 사용
+
+player:
+  fixed_time_step: true
+  play_every_frame: true          # == /app/player/useFastMode
+  target_hz: 240
+
+assets:
+  usd_path: "/home/geunpilpark/isaacsim_ws/ATS_IsaacSim/4.5/ATS_Enviroment/World.usd"
+  spot_prim: "/World/Spot"
+  ats_prim: "/World/Spot/ATS/ATS"
+  #camera_prim: "/World/Spot/ATS/ATS/link2/Xform/Camera"
+  camera_prim: "/World/Spot/Camera"
+  #imu_dummy_prim: "/World/Spot/IMU"   # TF 트리용 더미 prim (기존 코드 유지)
+  imu_dummy_prim: "/World/Spot/spot_imu"   # TF 트리용 더미 prim (기존 코드 유지)
+  base_link_prim: "/World/Spot/ATS/ATS/base_link"
+
+sensors:
+  lidar:
+    create_2d: true
+    create_3d: false        # 디버그용으로 true로 켜면 /point_cloud도 확인 가능
+    parent_prim: "/World/Spot/ATS/ATS/link2/Xform"
+    #prim_2d:    "/World/Spot/ATS/ATS/link2/Xform/base_scan"
+    prim_2d:    "/World/Spot/base_scan"
+    prim_3d:    "/World/Spot/ATS/ATS/link2/Xform/lidar3d"
+    profile_2d: "Example_Rotary_2D"   # ★ 교정
+    profile_3d: "Example_Rotary"
+
+ros:
+  topics:
+    camera_rgb: "yolo/image_raw"
+    camera_info: "camera_info"
+    # camera_depth는 현재 미사용(주석)
+    imu: "imu"
+    odom: "odom"
+    cmd_twist: "cmd_vel"
+    joint_cmd: "joint_state_cmd"
+    ats_joint_state_pub: "ats_joint_states"
+    spot_joint_state_pub: "spot_joint_states"
+    scan: "scan"
+    point_cloud: "point_cloud"
+  frames:
+    odom: "odom"
+    base_link: "base_link"
+    camera_frame: "Camera"
+    imu_frame: "spot_imu"
+    base_scan: "base_scan"
+
+policy:
+  path: "/home/geunpilpark/isaacsim_ws/ATS_IsaacSim/4.5/ATS_Enviroment/spot_policy.pt"
+  device: "auto"  # auto면 cuda 가용 시 cuda:0, 아니면 cpu
+
+controls:
+  teleop:
+    lin_speed: 1.5
+    ang_speed_yaw: 32.5
+    ang_speed_pitch: 32.5
+  spot_action_scale: 0.15
+  ats_joint_step: 0.2

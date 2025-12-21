@@ -1,0 +1,71 @@
+sim:
+  headless: false
+  load_extensions:
+    - omni.isaac.ros2_bridge
+    - omni.anim.people
+    - omni.anim.graph.bundle
+    - omni.anim.graph.schema
+    - omni.anim.navigation.schema
+    - omni.kit.scripting
+    - omni.anim.graph.ui
+    - omni.isaac.sensor
+    - isaacsim.sensors.rtx
+    - omni.replicator.core
+    - omni.isaac.render_product
+
+player:
+  fixed_time_step: true
+  play_every_frame: true
+  target_hz: 240
+
+assets:
+  usd_path: "../ATS_Enviroment/Spot_Ats2_with_Environment.usd" # NEW
+  spot_prim: "/World/Spot"
+  ats_prim: "/World/Spot/ATS"
+  camera_base_prim: "/World/Spot/ATS/ATS/link2/Xform"
+  camera_prim: "/World/Spot/ATS/ATS/link2/Xform/Camera"
+  imu_prim: "/World/Spot/body/base_imu/Imu_Sensor"
+  body_prim: "/World/Spot/body"
+  2D_lidar_base_prim: "/World/Spot/body/base_scan"
+  3D_lidar_base_prim: "/World/Spot/body/base_scan_3D"
+
+sensors:
+  lidar:
+    create_2d: true
+    create_3d: true
+    prim_2d: "/World/Spot/body/base_scan/Example_Rotary_2D"
+    prim_3d: "/World/Spot/body/base_scan_3D/Example_Rotary"
+    profile_2d: "Example_Rotary_2D"
+    profile_3d: "Example_Rotary_3D"
+
+ros:
+  topics:
+    camera_rgb: "yolo/image_raw"
+    camera_info: "camera_info"
+    imu: "imu"
+    odom: "odom"
+    cmd_twist: "cmd_vel"
+    joint_cmd: "joint_state_cmd"
+    ats_joint_state_pub: "ats_joint_states"
+    spot_joint_state_pub: "spot_joint_states"
+    scan: "scan"
+    point_cloud: "point_cloud"
+  frames:
+    odom: "odom"
+    base_link: "base_link"
+    camera_frame: "Camera"
+    imu_frame: "spot_imu"
+    base_scan: "Example_Rotary_2D"
+    base_scan_3D: "Example_Rotary"
+
+policy:
+  path: "../ATS_Enviroment/spot_policy.pt"
+  device: "auto"
+
+controls:
+  teleop:
+    lin_speed: 2.0 #1.5
+    ang_speed_yaw: 32.5
+    ang_speed_pitch: 32.5
+  spot_action_scale: 0.15 #0.15
+  ats_joint_step: 0.8 #0.2

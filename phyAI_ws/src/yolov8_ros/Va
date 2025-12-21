@@ -1,0 +1,529 @@
+[33mcommit a0dbb1537faae933adbaf1b5ecddcd1afb78ba3a[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;33mtag: 3.1.0[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Wed Jun 5 15:27:24 2024 +0200
+
+    using 2 mask to create the 3 bb
+
+[33mcommit 4424c6eb10bfd900cbef5162a0fc39e6f8dc7333[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Sun Jun 2 17:54:06 2024 +0200
+
+    logs fixed
+
+[33mcommit 01d6a276bffc7a4486f02cb8a0a5757caff8f0d1[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri May 31 12:28:02 2024 +0200
+
+    ultralytics updated
+
+[33mcommit 037172d5f2610a560a75b4d8087a714828a91ba0[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Wed May 8 10:16:19 2024 +0200
+
+    lap added in requirements
+
+[33mcommit 1fd5f8509ab37e3d96e04231ce978a4b962beee5[m[33m ([m[1;33mtag: 3.0.2[m[33m)[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Tue Apr 30 12:00:21 2024 +0200
+
+    marker color fixed
+
+[33mcommit 731f56b815deef26d43720189e036aefbb4d95dd[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Tue Apr 30 11:11:35 2024 +0200
+
+    colors for 3D markers
+
+[33mcommit ae248dd380d20a9a27f3504658f0f3d93e247b45[m[33m ([m[1;33mtag: 3.0.1[m[33m)[m
+Merge: 22cfb30 dc4e0e4
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Mon Apr 22 09:47:54 2024 +0200
+
+    Merge pull request #33 from agonzc34/main
+    
+    LC: added verbosity and bugfix on detect3d
+
+[33mcommit dc4e0e4ee85b0d7fd7c919f03c3130e72387bfe0[m
+Author: agonzc34 <agonzc34@estudiantes.unileon.es>
+Date:   Mon Apr 22 09:13:34 2024 +0200
+
+    LC: added verbosity and bugfix on detect3d
+
+[33mcommit 22cfb302bd2afa8dfebafb70a787859c92b44518[m[33m ([m[1;33mtag: 3.0.0[m[33m)[m
+Merge: 5061786 ef27143
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Tue Apr 9 10:47:05 2024 +0200
+
+    Merge pull request #32 from agonzc34/main
+    
+    Lifecycle nodes
+
+[33mcommit ef27143812b69a939ae20f3bd2b1b4958fe937c6[m
+Author: agonzc34 <agonzc34@estudiantes.unileon.es>
+Date:   Tue Apr 9 09:15:19 2024 +0200
+
+    Typos and table for resource comparison
+
+[33mcommit eefc71c51f0eeb77e07600daf2d84361a1dd4e3b[m
+Author: agonzc34 <agonzc34@estudiantes.unileon.es>
+Date:   Mon Apr 8 14:34:57 2024 +0200
+
+    Update README with Lifecycle comparisons
+
+[33mcommit 9f791ebc4460c72a2b2b2c7808f49d2ec7459ff1[m
+Author: agonzc34 <agonzc34@estudiantes.unileon.es>
+Date:   Mon Apr 8 11:17:57 2024 +0200
+
+    new gif
+
+[33mcommit 6bf30ebd05bc56d765d7760271c346dd9cdc7327[m
+Author: agonzc34 <agonzc34@estudiantes.unileon.es>
+Date:   Mon Apr 8 11:10:53 2024 +0200
+
+    Triggers and GIF
+
+[33mcommit 6c8c5ff6c1033c82551deab2733bf5807f90c5cc[m
+Author: agonzc34 <agonzc34@estudiantes.unileon.es>
+Date:   Fri Apr 5 14:06:23 2024 +0200
+
+    Updated description
+
+[33mcommit 01ec34507bfba8eaa0f19a63f598702089c411f9[m
+Author: agonzc34 <agonzc34@estudiantes.unileon.es>
+Date:   Fri Apr 5 14:04:37 2024 +0200
+
+    Debug Node with LC
+
+[33mcommit 55d2def7e62c49fcfac71204fca916bd1d228a80[m
+Author: agonzc34 <agonzc34@estudiantes.unileon.es>
+Date:   Fri Apr 5 13:48:50 2024 +0200
+
+    Adding LC to detect and track
+
+[33mcommit 50617869f5084d177beb8866484fef460b02491a[m[33m ([m[1;33mtag: 2.2.2[m[33m)[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Mon Mar 18 16:30:08 2024 +0100
+
+    yolov9 doc
+
+[33mcommit b071811c7f54ad3e1a6986fcfbf68453ab8e8c74[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Mon Mar 18 16:05:21 2024 +0100
+
+    yolov9
+
+[33mcommit e4fb26e4c58f99b641e80ee0bf90bb4775632d69[m[33m ([m[1;33mtag: 2.2.1[m[33m)[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Mon Jan 1 20:54:48 2024 +0100
+
+    requirements updated
+
+[33mcommit b4e335bec0da1df6556e8e215844916650d34d7b[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Sun Dec 31 20:45:33 2023 +0100
+
+    rqt_graph images
+
+[33mcommit d89313bb50934dc18fe73658ef1d5a7417a03ce2[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Sun Dec 31 20:31:16 2023 +0100
+
+    qos params description fixed in readme
+
+[33mcommit c05237fd13ae80df791d29f667fdc5c4e7c92e94[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Sun Dec 31 20:20:33 2023 +0100
+
+    size z to float
+
+[33mcommit ccded3c131a4bbdc33cff0458bd0e1910509611f[m[33m ([m[1;33mtag: 2.2.0[m[33m)[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Tue Dec 12 18:31:55 2023 +0100
+
+    qos reliabilities added to nodes and launch files
+
+[33mcommit 2e5e42837fb4ae924d06d3192423991c1693ae89[m
+Merge: e900adb 6769b6c
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Thu Nov 30 17:30:37 2023 +0100
+
+    Merge pull request #14 from adamwhats/requirements_fix
+    
+    Requirements fix
+
+[33mcommit 6769b6cbbe1a262911e454b972323bc2db8b0b1c[m
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Thu Nov 30 16:06:54 2023 +0000
+
+    Add typing-extensions requirement
+
+[33mcommit eb323ed597b1b11853a42b934f21be783ad87aaa[m
+Merge: 2d3647e e900adb
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Thu Nov 30 15:30:49 2023 +0000
+
+    Merge branch 'main' of github.com:adamwhats/yolov8_ros
+
+[33mcommit 2d3647eef689146746ec9cb6adca3d1ebcd3e535[m
+Merge: ab4216a e063688
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Thu Nov 30 15:29:32 2023 +0000
+
+    Merge branch 'main' of github.com:adamwhats/yolov8_ros
+
+[33mcommit e900adb5705d89f2844c0e00ef065c6f54846288[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Tue Oct 31 10:39:59 2023 +0100
+
+    citation added
+
+[33mcommit 9df7207e28e44aa00ef3c99ee5aca524ac449259[m[33m ([m[1;33mtag: 2.1.1[m[33m)[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Oct 27 23:32:20 2023 +0200
+
+    minor fixes
+
+[33mcommit d068b83d878847030a31e70262f29ac36e6d193c[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Oct 27 23:32:12 2023 +0200
+
+    requirements updated
+
+[33mcommit c472c88e24f70f758cc14230e8c4f5f3fcd5853b[m[33m ([m[1;33mtag: 2.1.0[m[33m)[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Oct 27 22:52:58 2023 +0200
+
+    readme updated
+
+[33mcommit 0719a3e87b3fd1ae69790dcf6aa55a812e7040dc[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Oct 27 22:42:34 2023 +0200
+
+    formatting
+
+[33mcommit 1b696dcdd37e2463af771418adc68cc44d48acd3[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Oct 27 22:42:26 2023 +0200
+
+    minor fix
+
+[33mcommit e063688278a590cc0e5a23a3db2d5c8ee173419d[m
+Merge: ab4216a 667857d
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Oct 27 22:31:00 2023 +0200
+
+    Merge pull request #13 from adamwhats/realsense_fix
+    
+    Realsense fix
+
+[33mcommit 667857db83166ec6602b084b925a162a7cb759db[m
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Fri Oct 27 15:47:15 2023 +0000
+
+    Fix bbox z coordinate
+
+[33mcommit b136e567c1d2d15d26470eb7a4e5556cfd0f92e7[m
+Merge: 4d9f24b ab4216a
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Mon Oct 23 16:34:50 2023 +0000
+
+    Merge branch 'main' into realsense_fix
+
+[33mcommit 4d9f24bfca55a17f24ae82574134883641589033[m
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Mon Oct 23 15:59:53 2023 +0000
+
+    remove timing
+
+[33mcommit 48d1a2c30058230fef0de811d7931e93e0fc8cbf[m
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Mon Oct 23 15:53:46 2023 +0000
+
+    remove timing
+
+[33mcommit 7d3292d278b0703181c89212220e39413f50e077[m
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Sun Oct 22 09:01:38 2023 +0000
+
+    Fix broken parameter overwriting
+
+[33mcommit ab4216a9a2cdaf3599d495eee8d5652c21bd7116[m[33m ([m[1;33mtag: 2.0.2[m[33m)[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Oct 20 10:36:54 2023 +0200
+
+    publish empty detection in 3d node
+
+[33mcommit 3c67af930ae626523a8a7c349d08193e04cfc4d2[m
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Sat Oct 14 16:27:00 2023 +0000
+
+    add depth units divisor parameter
+
+[33mcommit 8ddf749505d7b9b79f879e2dd05feb26c6b0b2f1[m
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Sat Oct 14 16:06:37 2023 +0000
+
+    optimizations
+
+[33mcommit 2b045b36420639f00ec84d97d95469d409bb8088[m
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Fri Oct 13 14:24:01 2023 +0000
+
+    generate 3d bbox and keypoints from depth image
+
+[33mcommit 49b6196f75d52117ab8f11a6d1741dbf6db261cf[m
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Fri Oct 13 16:06:15 2023 +0000
+
+    write timings out to file instead of terminal
+
+[33mcommit 24f1d0de7e5521103b4819d7a6f0834a5da76115[m
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Fri Oct 13 15:21:43 2023 +0000
+
+    fix format string
+
+[33mcommit 87b7dc4fbd5f2cf0616f75ea9cf5d6455cc58785[m
+Author: adamwhats <adamlwatts@msn.com>
+Date:   Fri Oct 13 08:16:07 2023 +0000
+
+    temporary timing for on_detect callback
+
+[33mcommit bbd7cb90b7331656725df4b0bf87571645d56e6b[m[33m ([m[1;33mtag: 2.0.1[m[33m)[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Sep 1 10:05:47 2023 +0200
+
+    cv2.Mat replaced by np.array
+
+[33mcommit f07833e57093e710fb7b5d4b0122f64663ca912b[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Aug 25 17:35:57 2023 +0200
+
+    new opencv-python and ultralytics versions
+
+[33mcommit 3bb9e709f7bb1391c6d94ba8c2a4de065250bc56[m[33m ([m[1;33mtag: 2.0.0[m[33m)[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Mon Aug 21 18:49:55 2023 +0200
+
+    Update README.md
+
+[33mcommit 1f5f31c3c4bebc32ac7713ff3917b22264ae4939[m
+Merge: b6fb306 5d0cf0a
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Mon Aug 21 16:59:13 2023 +0200
+
+    Merge pull request #7 from mgonzs13/devel
+    
+    Devel
+
+[33mcommit 5d0cf0a5fe0c0768df0e2592225fa3c5a2e7ed0c[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Sun Aug 20 10:56:10 2023 +0200
+
+    scikit-learn removed
+
+[33mcommit bbe0e7dc6c0e43f97200f17cec793ad90142b95c[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Sat Aug 19 18:21:51 2023 +0200
+
+    minor fix
+
+[33mcommit 497dec2b62b482e6db3327a9794fe9f3ad10de4e[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Sat Aug 12 00:25:48 2023 +0200
+
+    demos added to readme
+
+[33mcommit de53208417a6788dad39541de9e7ddf1e2524337[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Aug 11 23:20:38 2023 +0200
+
+    minor fix
+
+[33mcommit 3f2f59835ada1aea8ee0b4420cf4f152797fe271[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Aug 11 15:41:28 2023 +0200
+
+    3D keypoints
+
+[33mcommit 1eccf905da9eb62a8a4e107b82a1e8e0ef6e5aa9[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Aug 11 14:49:20 2023 +0200
+
+    seg masks to create 3d boxes
+
+[33mcommit 513e661d373338e65cb1255c3764526dcc0e8b99[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Aug 11 14:16:01 2023 +0200
+
+    markers to debug bbox3d
+
+[33mcommit 34c1c6671cc00b8ad2a3f1f70c67de7e63ec82ce[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Aug 11 11:36:09 2023 +0200
+
+    minor fixes
+
+[33mcommit 35ca81524c8fdcb2ef3176c87714e22e328491d0[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Aug 11 00:38:58 2023 +0200
+
+    kmeans updated
+
+[33mcommit 1a53728ece9ee65b2f1bab0721ebbb412b01e600[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Aug 11 00:00:53 2023 +0200
+
+    minor fixes
+
+[33mcommit 7d2c56f3dba5b733658b5849ee34c2289f201ba8[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Thu Aug 10 23:04:19 2023 +0200
+
+    bbox3d node
+
+[33mcommit 35a71874f5ec7d11dd3cdbd3150f15f7205b0e7f[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Thu Aug 10 16:07:25 2023 +0200
+
+    new msgs
+
+[33mcommit 58a3b170de4fc5b01be6bdd3bebe93e639e8d2d1[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Wed Aug 9 17:09:26 2023 +0200
+
+    minor fixes
+
+[33mcommit 54ab0648ea50fe7d470596c1aa17e0a7d2b4d3ee[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Wed Aug 9 14:45:47 2023 +0200
+
+    keypoints added
+
+[33mcommit 0f88059086308b755052f7c219413663b6b948bf[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Wed Aug 9 12:54:25 2023 +0200
+
+    segmentation masks added
+
+[33mcommit e4acf873290cd55dabe1a09e1ad646a9e1d32501[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Wed Aug 9 00:10:47 2023 +0200
+
+    tracking node created
+
+[33mcommit 960a64b2982cd65e02f3211cb865466388bc5d81[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Tue Aug 8 15:40:21 2023 +0200
+
+    ultralytics updated + debug_node
+
+[33mcommit b6fb30608764d4f13619e16e10524c5b60bf35e5[m[33m ([m[1;33mtag: 1.0.0[m[33m)[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Jun 9 15:29:18 2023 +0200
+
+    minor changes
+
+[33mcommit 0faf2c8cccabf097f48291de79eadaa0540cfc4b[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Mon Jun 5 10:59:29 2023 +0200
+
+    license added to files
+
+[33mcommit d53dfa6455e2869c8e73ffaea39118f760a3f061[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Sat May 6 11:57:57 2023 +0200
+
+    destroy_node added
+
+[33mcommit 8d51ddf959ca8cd0693362f26577dbdae1b2742a[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Sat May 6 10:15:24 2023 +0200
+
+    dependecies fixed
+
+[33mcommit c0309f7b78adedaf1ad2b1ce3f1d66931f0fab00[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Sun Mar 26 11:25:23 2023 +0200
+
+    tracker arg added to launch
+
+[33mcommit 1378302ec2abcc24b6329a08cc04bcfd18c7226e[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Tue Mar 21 20:40:32 2023 +0100
+
+    fixed track id
+
+[33mcommit a25048827cc2a48e269e0c76f9dcc1196a6ecf74[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Thu Mar 16 17:54:54 2023 +0100
+
+    Update README.md
+
+[33mcommit 65b82dc0f924ebe82d73be836b302ffcb4c8a827[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Thu Mar 16 17:53:54 2023 +0100
+
+    ultralytics tracking added
+
+[33mcommit f15ea77ee4398ef6d9189a161e29e18c93534f93[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Fri Mar 10 12:47:52 2023 +0100
+
+    updates for humble
+
+[33mcommit 0036c1cd29c07209a215f89f49aa25d0c14e1fd2[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Thu Mar 2 16:51:59 2023 +0100
+
+    Update README.md
+
+[33mcommit 605df4f7c955e50c59032be7f066672442209622[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Thu Mar 2 16:51:35 2023 +0100
+
+    Update README.md
+
+[33mcommit 39444d1caae84a49829448aaa198801f12716277[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Sun Feb 26 20:41:47 2023 +0100
+
+    results loop fixed
+    stream=True
+    result.cpu()
+
+[33mcommit af65b90a64e60e7bd51e6be0679b6937ac260326[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Wed Feb 22 15:42:43 2023 +0100
+
+    requirements fixed
+
+[33mcommit ee5abf6e32e84ea3da92b8b0fb659c1f60cf82a8[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Tue Feb 21 20:01:18 2023 +0100
+
+    header added to detections_msg
+
+[33mcommit 4b24aaa12db07fcfe9cba11c834c9a9018611d0b[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Tue Feb 21 19:54:34 2023 +0100
+
+    minor fix
+
+[33mcommit 9eea1743db3374ed40b1cca0a0c29f493e1340d1[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Tue Feb 21 19:42:27 2023 +0100
+
+    threshold used
+
+[33mcommit f8d5407237c7794bec59e2e27d03c286ec54f076[m
+Author: Miguel Ángel González Santamarta <mgons@unileon.es>
+Date:   Tue Feb 21 19:28:51 2023 +0100
+
+    initial files
+
+[33mcommit 9195a5aaff2711a08ef98443463201e732b4cb07[m
+Author: Miguel Ángel González Santamarta <mgonzs13@estudiantes.unileon.es>
+Date:   Tue Feb 21 17:42:18 2023 +0100
+
+    Initial commit
