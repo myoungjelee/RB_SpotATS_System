@@ -1,0 +1,32 @@
+digraph G {
+"body" -> "Example_Rotary"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"odom" -> "body"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"body" -> "Example_Rotary_2D"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"map" -> "odom"[label=" Broadcaster: default_authority\nAverage rate: 23.571\nBuffer length: 4.2\nMost recent transform: 21.383334\nOldest transform: 17.183334\n"];
+"body" -> "fl_hip"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"body" -> "fr_hip"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"body" -> "hl_hip"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"body" -> "hr_hip"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"fl_hip" -> "fl_uleg"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"fr_hip" -> "fr_uleg"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"hl_hip" -> "hl_uleg"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"hr_hip" -> "hr_uleg"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"fl_uleg" -> "fl_lleg"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"fr_uleg" -> "fr_lleg"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"hl_uleg" -> "hl_lleg"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"hr_uleg" -> "hr_lleg"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"fl_lleg" -> "fl_foot"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"fr_lleg" -> "fr_foot"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"hl_lleg" -> "hl_foot"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"hr_lleg" -> "hr_foot"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"body" -> "Imu_Sensor"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"body" -> "Xform"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"body" -> "Camera"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"link1" -> "base_link"[label=" Broadcaster: default_authority\nAverage rate: 120.478\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"body" -> "link1"[label=" Broadcaster: default_authority\nAverage rate: 60.239\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+"body" -> "link2"[label=" Broadcaster: default_authority\nAverage rate: 120.478\nBuffer length: 4.183\nMost recent transform: 20.400001\nOldest transform: 16.216668\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1769511028.1023757"[ shape=plaintext ] ;
+}->"map";
+}

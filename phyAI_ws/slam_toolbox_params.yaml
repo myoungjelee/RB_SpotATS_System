@@ -9,9 +9,9 @@ slam_toolbox:
     scan_topic: scan
 
     # 오도메트리/TF (중요)
-    use_odometry: true         # 외부 odom 없으면 false
-    provide_odom_frame: true     # slam_toolbox가 odom->base_link 제공
-    publish_tf: true             # map->odom, (필요시) odom->base_link 퍼블리시
+    use_odometry: true # 외부 odom 없으면 false
+    provide_odom_frame: true # slam_toolbox가 odom->base_link 제공
+    publish_tf: true # map->odom, (필요시) odom->base_link 퍼블리시
 
     # TF/시간 버퍼/대기
     tf_buffer_duration: 30.0
@@ -23,10 +23,8 @@ slam_toolbox:
     # 스캔 특성/부하 완화
     resolution: 0.05
     max_laser_range: 20.0
-    minimum_range: 1.0            # 너의 센서 스펙에 맞춤
-    throttle_scans: 2             # 부하 크면 2~3로 올려 스캔 다운샘플
+    min_laser_range: 1.0 # 너의 센서 스펙에 맞춤
+    throttle_scans: 2 # 부하 크면 2~3로 올려 스캔 다운샘플
+
 
     # (옵션) use_scan_matching: true
-
-
-

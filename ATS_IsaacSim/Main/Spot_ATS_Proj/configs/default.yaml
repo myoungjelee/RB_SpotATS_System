@@ -59,7 +59,7 @@ ros:
     base_scan_3D: "Example_Rotary"
 
 policy:
-  path: "../ATS_Enviroment/spot_policy.pt"
+  path: "../ATS_Enviroment/spot_policy_ats_retrained.pt"
   device: "auto"
 
 controls:
