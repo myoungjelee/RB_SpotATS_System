@@ -1,0 +1,80 @@
+###############################################################################
+# RB_SpotATS_System .gitignore
+# - Keep: docs/images/configs + final policy for system validation
+# - Ignore: runtime artifacts, caches, large training outputs, intermediate policies
+###############################################################################
+
+### Python ###
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.cpython-*
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+### Virtual Environments ###
+env/
+venv/
+.venv/
+conda/
+miniconda/
+pip-log.txt
+
+### OS / IDE ###
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+### ROS 2 (build artifacts) ###
+build/
+install/
+log/
+
+### Isaac Sim / Omniverse runtime artifacts ###
+.collect.mapping.json
+*.log
+logs/
+last_info.json
+kit_*.log
+
+### Isaac assets (usually large / licensing) ###
+*.usd
+*.usda
+*.usdc
+*.usdz
+
+### Machine Learning / RL artifacts ###
+# Ignore all policies/weights by default
+*.pt
+*.pth
+*.onnx
+*.pkl
+*.h5
+
+
+# === RB_SpotATS_System: system validation policies ONLY ===
+!ATS_IsaacSim/Main/ATS_Environment/policies/
+!ATS_IsaacSim/Main/ATS_Environment/policies/policy_fix14.pt
+!ATS_IsaacSim/Main/ATS_Environment/policies/spot_policy.pt
+
+# Common training output folders (if they exist)
+runs/
+wandb/
+checkpoints/
+tensorboard/
+outputs/
+multirun/
+
+### Large data folders (keep small configs/maps elsewhere) ###
+data/
+datasets/
+
+### Misc ###
+*.tmp
+*.bak
+*.swp
+*.swo
