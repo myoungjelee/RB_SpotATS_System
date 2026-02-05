@@ -1,156 +1,261 @@
-# RB_SpotATS_System (System Validation Repository)
+# RB_SpotATS_System
 
-> 본 레포지토리는 강의 레포지토리를 포크하여 출발했으나,
-> 로컬 프로젝트 구조에 맞게 config / launch / policy 경로를 전면 수정하였으며,
-> 강의를 따라가며 모든 실행을 직접 검증하는 용도로 사용되고 있습니다.
-> 로봇 시스템 관점에서 *정책 적용·연동·설정 검증*을 수행한 학습·정리용 프로젝트입니다.
->
-> 강화학습 성능 향상이나 신규 알고리즘 제안이 목적이 아니며,
-> **이미 학습된 정책을 실제 시스템 파이프라인에 얹었을 때 무엇이 문제되는지를 구조적으로 이해하는 것**에 초점을 둡니다.
+## System Validation Portfolio for Legged Robot Control (Spot + ATS)
 
 ---
 
-## 프로젝트 개요
+## 전체 시스템 아키텍처
 
-**RB_SpotATS_System**은 Isaac Lab 기반 Spot 로봇 시스템에
-**ATS(Auto Targeting System)** 모듈을 통합한 환경에서,
+```mermaid
+graph TD
+%% --- 계층별 스타일 설정 ---
+classDef input fill:#DEEBF7,stroke:#2F5597,stroke-width:2px
+classDef perception fill:#E2F0D9,stroke:#385723,stroke-width:2px
+classDef decision fill:#FFF2CC,stroke:#BF9000,stroke-width:2px
+classDef control fill:#FBE5D6,stroke:#843C0C,stroke-width:2px
+classDef output fill:#EDEDED,stroke:#3B3B3B,stroke-width:2px
 
-- 학습된 locomotion 정책을 어떻게 로딩·교체하는지
-- 시스템 설정(cfg, TF, 센서 구성)이 정책 거동에 어떤 영향을 주는지
-- ROS 2 기반 실행 파이프라인에서 어떤 정합성 문제가 발생하는지
+%% --- 1단계: 입력 ---
+subgraph STAGE_1 [Input]
+    User[User Command]
+    Sensors[IMU / Camera / LiDAR]
+end
 
-를 **시스템 엔지니어 관점에서 검증·정리한 레포지토리**입니다.
+%% --- 2단계: 인지 ---
+subgraph STAGE_2 [Perception]
+    SLAM[SLAM / Localization]
+    Vision[Detection / Tracking]
+    Context[Context Builder]
+end
 
-이 레포지토리는 다음 질문에 답하는 것을 목표로 합니다.
+%% --- 3단계: 판단 ---
+subgraph STAGE_3 [Decision - System 2]
+    Planner[LLM Planner]
+    Plan[High-Level Plan JSON]
+end
 
-> “강화학습으로 학습된 정책을
-> 실제 로봇 시스템 구조에 적용하면,
-> 어떤 문제가 어디에서 발생하고,
-> 무엇을 설정으로 해결해야 하는가?”
+%% --- 4단계: 실행 ---
+subgraph STAGE_4 [Execution - System 1]
+    Executor[Executor]
+    Actions[Action Primitives]
+end
+
+%% --- 5단계: 출력 ---
+subgraph STAGE_5 [Output]
+    Robot[Spot + ATS]
+end
+
+%% --- 흐름 ---
+User --> Planner
+Sensors --> STAGE_2
+STAGE_2 --> Context --> Planner
+Planner --> Plan --> Executor
+Executor --> Actions --> Robot
+
+class STAGE_1,User,Sensors input
+class STAGE_2,SLAM,Vision,Context perception
+class STAGE_3,Planner,Plan decision
+class STAGE_4,Executor,Actions control
+class STAGE_5,Robot output
+```
+
+---
+
+## 프로젝트 한 줄 요약
+
+**RB_SpotATS_System**은
+Isaac Sim / Isaac Lab 기반의 Spot + ATS 예제 레포지토리를 **포크(Fork)** 한 뒤,
+
+> 로봇 제어 경험이 없는 상태에서
+> 센서 → 상태 추정 → 제어 입력 → 실행(Action)으로 이어지는
+> **로봇 제어 시스템 전체 구조를 이해하고 검증하기 위해**
+> 코드를 분석하고, 실제로 실행하며, 실패를 재현·분해한
+> **시스템 이해 및 실행 검증 중심 포트폴리오**입니다.
+
+본 레포지토리는 **새로운 알고리즘이나 코드를 구현하는 것을 목표로 하지 않으며**,
+
+- 제공된 시스템 코드가
+- 어떤 역할 분담과 실행 흐름을 가지는지
+- 실제 실행 환경에서 어디서 문제가 발생하고 왜 실패하는지
+
+를 **실행 기반으로 해석할 수 있는지**에 초점을 둡니다.
+
+---
+
+## 프로젝트 배경
+
+다족 로봇 제어(Spot 계열)에서 치명적인 문제의 대부분은
+**제어 알고리즘 이전 단계**에서 발생합니다.
+
+- IMU / Odometry / TF 불일치
+- QoS 설정 오류로 인한 상태 미수신
+- Clock / 실행 주기 / 노드 실행 순서 문제
+- 센서 추가로 인한 질량·관성 구조 변화
+
+본 프로젝트는 이러한 문제를
+
+> Isaac Sim 기반 시스템 환경에서 **의도적으로 재현하고**,
+> 실기체 관점에서 **어떤 지점이 실패로 이어지는지**를
+> 실행 단위로 검증하는 것을 목표로 합니다.
+
+---
+
+## 시뮬레이션 활용 원칙 (중요)
+
+Isaac Sim / Isaac Lab은 본 프로젝트에서
+
+- 학습 도구 ❌
+- 성능 비교 도구 ❌
+
+가 아니라,
+
+> **실기체 로봇 제어 시스템의 실행 구조를 사전에 검증하기 위한 대체 환경**
+
+으로 사용되었습니다.
+
+Action Graph + ROS 2 Bridge는 실기체 환경의
+
+- 센서 드라이버
+- MCU ↔ 메인 컴퓨터 인터페이스
+- 상태 전달 및 제어 파이프라인
+
+에 대응되는 구조로 해석됩니다.
+
+---
+
+## 전체 시스템 아키텍처
+
+본 프로젝트는 **Spot 로봇에 ATS(Auto Targeting System)를 결합한 제어 시스템**을 대상으로,
+**결정(Decision)과 실행(Execution)이 어떻게 분리되어 있는지**를
+코드 구조와 실제 실행을 통해 분석했습니다.
+
+### System 계층 개요
+
+- **System‑0**: 센서·상태·물리 기반 시스템 정합성 검증
+- **System‑1 (Executor)**: 계획된 행동을 실행 관점에서 안전하게 관리
+- **System‑2 (Planner)**: 고수준 판단 및 계획 생성 (LLM 기반)
+
+### 전체 아키텍처 다이어그램
+
+> 본 아키텍처 다이어그램은
+> 본 레포지토리에서 실제로 실행·분석한 코드 흐름을 기준으로
+> **구조적 책임과 실행 경계를 재구성한 개념도**이며,
+> 모든 블록이 동일한 수준으로 구현되었음을 의미하지는 않습니다.
+
+```mermaid
+graph TD
+    %% --- 계층별 스타일 설정 ---
+    classDef input fill:#DEEBF7,stroke:#2F5597,stroke-width:2px
+    classDef perception fill:#E2F0D9,stroke:#385723,stroke-width:2px
+    classDef decision fill:#FFF2CC,stroke:#BF9000,stroke-width:2px
+    classDef control fill:#FBE5D6,stroke:#843C0C,stroke-width:2px
+    classDef output fill:#EDEDED,stroke:#3B3B3B,stroke-width:2px
+
+    subgraph STAGE_1 [Input]
+        Sensors[Sensor Data]
+    end
+    subgraph STAGE_2 [Perception]
+        Slam[SLAM]
+        Vision[Vision]
+    end
+    subgraph STAGE_3 [Decision]
+        Planner[System-2 Planner]
+    end
+    subgraph STAGE_4 [Execution]
+        Executor[System-1 Executor]
+    end
+    subgraph STAGE_5 [Output]
+        Robot[Spot + ATS]
+    end
+
+    STAGE_1 --> STAGE_2 --> STAGE_3 --> STAGE_4 --> STAGE_5
+```
+
+---
+
+## System‑2 Planner (구조 분석 및 실행 흐름 이해)
+
+> System‑2는 로봇을 **직접 제어하지 않습니다.**
+
+System‑2의 책임은 다음으로 제한됩니다.
+
+- System‑1 상태(`/ats_state`) 및 컨텍스트 요약
+- LLM 기반 High‑Level Plan(JSON) 생성
+- 계획 스키마 검증 및 전달
+- `report_and_wait` 상태에서 판단 갱신
+
+---
+
+## System‑1 Executor (구조 분석 및 실행 검증)
+
+System‑1 Executor는 제어 정책이나 판단을 담당하지 않으며,
+상위에서 전달된 계획을 **실행 관점에서 안정적으로 관리**하는 계층입니다.
+
+- Plan(JSON) 수신 및 스키마 검증
+- 실행 스레드 관리 및 execution generation 기반 취소 처리
+- 단위 액션(Action Primitive) 실행 및 실패 감지
+- 실행 상태(`/ats_state`) 퍼블리시를 통한 시스템 관측성 확보
+
+---
+
+## 주요 시스템 검증 및 트러블슈팅 사례
+
+### TF / Frame 정합성 문제
+
+- 현상: Navigation goal 설정 후 로봇 미동작
+- 원인: ATS 추가 후 `map → odom → base_link` frame 구조 불일치
+- 조치: static TF 재정의 및 TF publish 순서 조정
+- 검증: RViz 상 TF 정상 연결 및 goal 도달 확인
+
+### QoS 설정 불일치
+
+- 현상: `/map` 토픽 미수신으로 localization 정지
+- 원인: `transient_local` QoS 누락
+- 조치: Subscriber QoS 명시적 설정
+- 검증: map 정상 수신 및 SLAM 갱신 확인
+
+### Clock / 실행 순서 문제
+
+- 현상: Navigation 및 Executor 동작 정지
+- 원인: Simulation Clock 미동기화 및 노드 실행 순서 오류
+- 조치: `/clock` 확인 후 실행 순서 재정렬
+- 검증: 전체 노드 정상 동작 확인
+
+### 질량·관성 구조 변경에 따른 반응
+
+- 현상: ATS 추가 후 동일 제어 입력에서 보행 불안정
+- 조치: Isaac Sim에서 rigid body mass / inertia 속성 변경 후 비교 실행
+- 검증: 구조 변경이 시스템 안정성에 미치는 영향 관찰
 
 ---
 
 ## 강화학습 레포지토리와의 관계
 
-이 레포지토리에서는 **강화학습 학습 과정 자체를 다루지 않습니다.**
+본 레포지토리는 **강화학습을 직접 다루지 않습니다.**
 
-- 정책 학습
-- reward 설계
-- 파라미터 스윕 및 실험 운영
+- 정책 학습 및 실험 운영은 별도의 레포지토리에서 수행되었습니다.
 
-위 항목은 별도의 강화학습 전용 레포지토리에서 수행되었습니다.
+- **RL_SpotATS**: [https://github.com/myoungjelee/RL_SpotATS](https://github.com/myoungjelee/RL_SpotATS)
 
-👉 강화학습 실험 및 학습 기록은 다음 레포지토리에 정리되어 있습니다:
-
-- [`RL_SpotATS`](https://github.com/myoungjelee/RL_SpotATS)
-
-본 레포지토리는 **학습이 끝난 정책을 시스템에 적용·검증하는 역할**만을 담당합니다.
-
----
-
-## 프로젝트 성격 정리
-
-이 레포지토리는 다음을 **하지 않습니다**:
-
-- 강화학습 알고리즘 연구
-- 신규 보행 정책 설계
-- 성능 수치(SOTA) 경쟁
-
-대신 다음을 **집중적으로 다룹니다**:
-
-- Isaac Lab 기반 로봇 시스템 구조 이해
-- 학습된 정책의 로딩·교체 흐름 검증
-- ATS 통합에 따른 질량·관성·TF 구조 변화 분석
-- ROS 2 실행 환경에서의 SLAM / TF / odometry 정합성 확인
-
-즉, **로봇 제어·시스템 엔지니어 관점의 검증 레포지토리**입니다.
-
----
-
-## 시스템 구성
-
-- 로봇 플랫폼: Spot (Isaac Lab Simulation)
-- 시뮬레이터: NVIDIA Isaac Sim / Isaac Lab
-- 미들웨어: ROS 2 (Humble)
-- 정책 형태: PPO 기반 locomotion policy (.pt)
-- 확장 요소: ATS (Auto Targeting System)
-
----
-
-## 시스템 검증 배경
-
-ATS 모듈이 추가되면서 시스템에는 다음과 같은 변화가 발생했습니다.
-
-- 로봇 상부 질량 및 관성(Inertia) 변화
-- 센서 배치 변경에 따른 TF 트리 구조 변화
-- 정책 로딩 경로 및 실행 흐름 복잡화
-
-이로 인해 기존 locomotion 정책을 그대로 적용할 경우,
-보행 거동 불안정 또는 시스템 설정 오류가 발생할 가능성이 존재했습니다.
-
-본 레포지토리에서는 이러한 문제를 가정하고:
-
-- 외부 강화학습 레포에서 학습된 정책을 불러와 적용
-- cfg 기반 정책 교체 구조 구성
-- ROS 2 실행 환경에서 실제로 발생하는 문제를 기준으로 설정 검증
-
-을 수행했습니다.
-
----
-
-## 정책 구성 및 적용 방식
-
-본 프로젝트에서는 다음과 같은 정책을 시스템에 적용·검증합니다.
-
-- `spot_policy.pt`
-  - 강의 예제에서 제공된 기본 locomotion 정책
-
-- `spot_policy_ats_retrained.pt`
-  - ATS 통합 환경을 고려해 강화학습 레포에서 재학습된 정책
-
-정책 경로는 코드에 하드코딩하지 않고,
-`configs/default.yaml`을 통해 관리하여 다음이 가능하도록 구성했습니다.
-
-- 정책 교체
-- 동일 시스템 설정에서의 비교 실행
-
----
-
-## 주요 시스템 검증 포인트
-
-- ATS 통합 환경에서 정책 정상 동작 여부
-- cfg 기반 정책 로딩 구조의 안정성
-- ROS 2 SLAM Toolbox 설정 검증
-  - odometry / TF(frame) 정합성 분석
-  - `map → odom → base_link` 프레임 체계 안정화
-
-이 과정에서 정책 성능 자체보다,
-**시스템 설정과 프레임 정합성이 로봇 거동에 미치는 영향**을 중심으로 관찰했습니다.
-
----
-
-## 브랜치 전략
-
-- `dev`: 설정 실험 및 검증용 브랜치
-- `main`: 검증 완료된 설정만 반영
-
-작은 설정 변경도 dev 브랜치에서 확인한 뒤
-main에 병합하는 방식으로 관리했습니다.
+RB_SpotATS_System은 학습된 정책을 시스템 입력으로 통합하고,
+**실제 실행 가능성과 안정성을 검증하는 단계**에 초점을 둡니다.
 
 ---
 
 ## 정리
 
-이 레포지토리는:
+이 프로젝트는
 
-- 강화학습 성능을 과시하기 위한 프로젝트가 아니며
-- 강의 예제를 그대로 제출하기 위한 레포지토리도 아닙니다.
+- Spot + ATS 로봇 시스템 예제 코드를 포크한 뒤
+- 로봇 제어에 대한 사전 지식이 없는 상태에서
+- 전체 시스템 실행 구조를 이해하고 검증하기 위해
 
-> 강화학습으로 학습된 정책을
-> 실제 로봇 시스템에 적용하는 과정에서 발생하는
-> 구조·설정·연동 문제를 이해하고 검증한 기록
+센서, 상태, 통신, 실행 계층을 하나씩 분해하며
+**실제 실행을 통해 검증한 시스템 중심 포트폴리오**입니다.
 
-을 남기기 위한 **로봇 시스템 검증 레포지토리**입니다.
+본 레포지토리는
 
-강화학습 실험 자체는 [`RL_SpotATS`](https://github.com/myoungjelee/RL_SpotATS) 레포지토리에서 분리 수행되었으며,
-본 레포지토리는 이후 **로봇 제어·시스템 엔지니어 관점의 작업에 집중**하기 위한 기반으로 유지됩니다.
+- "내가 모든 코드를 구현했다"는 주장을 하지 않으며
+- 기존 시스템을 **어떻게 실행했고, 무엇을 검증했고, 어떤 판단을 했는지**를
+
+명확하게 설명하는 데 목적이 있습니다.
