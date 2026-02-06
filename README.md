@@ -7,7 +7,10 @@
 ## 전체 시스템 아키텍처
 
 ```mermaid
-graph TD
+graph LR
+%% --- 전역 설정 ---
+%%{init: {'theme': 'base', 'themeVariables': { 'nodeSpacing': 50, 'rankSpacing': 40}}}%%
+
 %% --- 계층별 스타일 설정 ---
 classDef input fill:#DEEBF7,stroke:#2F5597,stroke-width:2px
 classDef perception fill:#E2F0D9,stroke:#385723,stroke-width:2px
@@ -17,12 +20,14 @@ classDef output fill:#EDEDED,stroke:#3B3B3B,stroke-width:2px
 
 %% --- 1단계: 입력 ---
 subgraph STAGE_1 [Input]
+    direction TB
     User[User Command]
     Sensors[IMU / Camera / LiDAR]
 end
 
 %% --- 2단계: 인지 ---
 subgraph STAGE_2 [Perception]
+    direction TB
     SLAM[SLAM / Localization]
     Vision[Detection / Tracking]
     Context[Context Builder]
@@ -30,28 +35,34 @@ end
 
 %% --- 3단계: 판단 ---
 subgraph STAGE_3 [Decision - System 2]
+    direction TB
     Planner[LLM Planner]
     Plan[High-Level Plan JSON]
 end
 
 %% --- 4단계: 실행 ---
 subgraph STAGE_4 [Execution - System 1]
+    direction TB
     Executor[Executor]
-    Actions[Action Primitives]
+    Actions[Action Plan]
 end
 
 %% --- 5단계: 출력 ---
 subgraph STAGE_5 [Output]
+    direction TB
     Robot[Spot + ATS]
 end
 
 %% --- 흐름 ---
 User --> Planner
-Sensors --> STAGE_2
+Sensors --> SLAM
+SLAM --> Context
+Vision --> Context
 STAGE_2 --> Context --> Planner
 Planner --> Plan --> Executor
 Executor --> Actions --> Robot
 
+%% 스타일 적용
 class STAGE_1,User,Sensors input
 class STAGE_2,SLAM,Vision,Context perception
 class STAGE_3,Planner,Plan decision
